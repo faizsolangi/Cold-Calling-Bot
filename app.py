@@ -20,7 +20,7 @@ def webhook():
 def trigger():
     customer = {
         "name": "John Doe",
-        "phone": "+923365780455",  # Use a verified number for testing
+        "phone": "+923016377754",  # Use a verified number for testing
         "order_id": "12345",
         "item": "Wireless Mouse",
         "address": "123 Main Street",
