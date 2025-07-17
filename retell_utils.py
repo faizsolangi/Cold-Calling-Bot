@@ -6,22 +6,21 @@ def trigger_call(agent_id: str, user_number: str, retell_api_key: str = None) ->
     Triggers a call via Retell AI using the agent_id and phone number.
 
     Args:
-        agent_id (str):key_fe87c015f66da9c63172af922d16
-        user_number (str):+923016377754 
-        retell_api_key (str, optional): key_fe87c015f66da9c63172af922d16
+        agent_id (str): The ID of the Retell AI agent
+        user_number (str): Customer phone number in international format (+92...)
+        retell_api_key (str, optional): Your Retell API key (uses ENV variable if not provided)
 
     Returns:
         bool: True if the API call was successful, False otherwise.
     """
 
     if not retell_api_key:
-        retell_api_key = os.getenv("key_fe87c015f66da9c63172af922d16")
+        retell_api_key = os.getenv("RETELL_API_KEY")  # Make sure you set this in your Render environment
 
     if not all([agent_id, user_number, retell_api_key]):
         print("❌ Missing one or more required parameters.")
         return False
 
-    # Debug logs
     print("🚀 Triggering Retell AI call...")
     print(f"📞 Calling Number: {user_number}")
     print(f"🤖 Agent ID: {agent_id}")
@@ -33,12 +32,14 @@ def trigger_call(agent_id: str, user_number: str, retell_api_key: str = None) ->
     }
 
     payload = {
-        "agent_id": agent_id,
-        "phone_number": user_number
+        "agent_id": key_fe87c015f66da9c63172af922d16,
+        "customer": {
+            "phone_number": +923016377754
+        }
     }
 
     try:
-        response = requests.post("https://api.retellai.com/v1/call", json=payload, headers=headers)
+        response = requests.post("https://api.retellai.com/calls", json=payload, headers=headers)
         print(f"📡 Retell API Response [{response.status_code}]: {response.text}")
 
         if response.status_code == 200:
@@ -51,8 +52,3 @@ def trigger_call(agent_id: str, user_number: str, retell_api_key: str = None) ->
     except Exception as e:
         print(f"❗ Exception during API call: {e}")
         return False
-
-
-
-
-
