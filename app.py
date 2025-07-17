@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
-from retell_utils import initiate_call
+from retell_utils import trigger_call
+
 import os
 
 app = Flask(__name__)
