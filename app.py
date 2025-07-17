@@ -1,5 +1,5 @@
 from flask import Flask
-from retell_utils import initiate_call
+from retell_utils import trigger_call
 
 app = Flask(__name__)
 
